@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Travel Itinerary - VoyageCraft</title>
+  <meta name="description" content="View your comprehensive, day-by-day travel schedule, verified cost breakdown, and accommodation details." />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Print specific styling for clean Download/Print preview */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .app-bg, .app-bg-overlay, .navbar, .footer, .no-print {
+        display: none !important;
+      }
+      main {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .glass-card {
+        background: #FFFFFF !important;
+        box-shadow: none !important;
+        border: 1px solid #CCCCCC !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- App Background -->
+  <div class="app-bg"></div>
+  <div class="app-bg-overlay"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar glass-card">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+      </div>
+      <span>VoyageCraft</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="planner.html" class="nav-link">Plan Trip</a></li>
+      <li><a href="output.html" class="nav-link active">Itinerary Output</a></li>
+      <li><a href="documentation.html" class="nav-link">Pattern Docs</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Output Container -->
+  <main id="itinerary-output-container">
+    <!-- Top Hero Banner Card -->
+    <div class="output-hero glass-card">
+      <img id="output-hero-img" src="/src/assets/images/goa_beach_1785941223820.jpg" alt="Destination Image" class="output-hero-img" referrerpolicy="no-referrer" />
+      <div class="output-hero-overlay">
+        <span class="output-hero-badge">Confirmed Travel Itinerary</span>
+        <h1 id="output-dest-name" class="output-title">Goa</h1>
+        <p id="output-dest-tagline" class="output-subtitle">Pearl of the Orient & Beach Capital</p>
+        <p id="output-dest-desc" style="font-size: 0.95rem; opacity: 0.85; margin-top: 6px; max-width: 700px;"></p>
+      </div>
+    </div>
+
+    <!-- Destination Weather, Currency & Booking Details Bar -->
+    <div id="output-services-bar" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px;">
+      <!-- Weather Card -->
+      <div id="output-weather-card" class="glass-card" style="padding: 16px 20px; display: flex; align-items: center; gap: 14px;"></div>
+
+      <!-- Currency Switcher Card -->
+      <div id="output-currency-card" class="glass-card" style="padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;"></div>
+
+      <!-- Booking Locator Card -->
+      <div id="output-gds-card" class="glass-card" style="padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px;"></div>
+    </div>
+
+    <!-- Summary Tiles Bar -->
+    <div class="summary-bar">
+      <!-- Transport -->
+      <div class="glass-card summary-tile">
+        <div class="summary-tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+        </div>
+        <div>
+          <div class="summary-tile-label">Transportation</div>
+          <div id="sum-transport" class="summary-tile-val">Flight</div>
+        </div>
+      </div>
+
+      <!-- Accommodation -->
+      <div class="glass-card summary-tile">
+        <div class="summary-tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22v-6.57a2 2 0 0 1 1.18-1.83l3.08-1.37a2 2 0 0 1 1.62 0l3.08 1.37a2 2 0 0 1 1.18 1.83V22"/><path d="M18 12V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18"/><path d="M2 22h20"/></svg>
+        </div>
+        <div>
+          <div class="summary-tile-label">Accommodation</div>
+          <div id="sum-accommodation" class="summary-tile-val">3-Star Hotel</div>
+        </div>
+      </div>
+
+      <!-- Budget Limit -->
+      <div class="glass-card summary-tile">
+        <div class="summary-tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <div class="summary-tile-label">Target Budget</div>
+          <div id="sum-budget" class="summary-tile-val">₹25,000</div>
+        </div>
+      </div>
+
+      <!-- Duration -->
+      <div class="glass-card summary-tile">
+        <div class="summary-tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+        </div>
+        <div>
+          <div class="summary-tile-label">Duration</div>
+          <div id="sum-duration" class="summary-tile-val">4 Days</div>
+        </div>
+      </div>
+
+      <!-- Itinerary Pace -->
+      <div class="glass-card summary-tile">
+        <div class="summary-tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div>
+          <div class="summary-tile-label">Trip Pace</div>
+          <div id="sum-pace" class="summary-tile-val">Moderate</div>
+        </div>
+      </div>
+
+      <!-- Travelers / Members -->
+      <div class="glass-card summary-tile">
+        <div class="summary-tile-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div class="summary-tile-label">Travelers</div>
+          <div id="sum-travelers" class="summary-tile-val">2 Persons</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selected Attractions Chips -->
+    <div class="glass-card" style="padding: 20px; margin-bottom: 24px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="font-weight: 700; font-size: 0.95rem; color: var(--text-dark);">Selected Attraction Preferences:</div>
+      <div id="output-attractions-chips" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+    </div>
+
+    <!-- Active Trip Protection & Add-ons -->
+    <div id="output-addons-container" class="glass-card" style="padding: 22px; margin-bottom: 24px; border: 1px solid rgba(180, 83, 9, 0.2);"></div>
+
+    <!-- Live Budget Health Observer Container -->
+    <div id="budget-health-indicator" class="glass-card" style="padding: 14px 20px; margin-bottom: 24px; border-radius: 12px;"></div>
+
+    <!-- Travel Pacing Strategy Switcher -->
+    <div id="output-pacing-strategy-card" class="glass-card" style="padding: 20px; margin-bottom: 24px;"></div>
+
+    <!-- Smart Packing & Readiness Checklist Observer Container -->
+    <div id="packing-advisor-container" class="glass-card" style="padding: 20px; margin-bottom: 28px;"></div>
+
+    <!-- Day-wise Itinerary Timeline -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+      <h2 class="timeline-title" style="margin-bottom: 0;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+        Day-Wise Itinerary Schedule
+      </h2>
+    </div>
+    <div id="output-timeline-list" class="timeline-list"></div>
+
+    <!-- Cost Breakdown Section -->
+    <div class="glass-card cost-card">
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-blue-dark); display: flex; align-items: center; gap: 10px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Estimated Travel Cost Breakdown
+      </h3>
+      <div id="output-cost-grid" class="cost-grid"></div>
+    </div>
+
+    <!-- Page Action Buttons -->
+    <div class="no-print" style="display: flex; gap: 16px; justify-content: center; margin-bottom: 60px; flex-wrap: wrap;">
+      <button id="download-btn" class="btn btn-accent">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        Download Itinerary
+      </button>
+      <button id="back-btn" class="btn btn-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Back to Planner
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-title">VoyageCraft Tour & Holiday Planning</div>
+      <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">© 2026 VoyageCraft. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container for Observer Pattern -->
+  <div id="trip-toast-container" class="no-print" style="position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none;"></div>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>

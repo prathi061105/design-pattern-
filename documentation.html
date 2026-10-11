@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Patterns Documentation & Verification Guide - VoyageCraft</title>
+  <meta name="description" content="Visual documentation and live verification suite for the 6 GoF Design Patterns implemented in the Smart Trip Planning System." />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .doc-container {
+      max-width: 1100px;
+      margin: 0 auto 80px auto;
+      padding: 20px;
+    }
+    .doc-hero {
+      padding: 32px 36px;
+      margin-bottom: 30px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,249,255,0.9));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .pattern-card {
+      margin-bottom: 36px;
+      padding: 28px;
+      border-radius: 16px;
+      background: #FFFFFF;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border: 1px solid #E2E8F0;
+    }
+    .badge-creational {
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .badge-structural {
+      background: #DBEAFE;
+      color: #1E40AF;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .badge-behavioral {
+      background: #FEF3C7;
+      color: #B45309;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .code-box {
+      background: #0F172A;
+      color: #E2E8F0;
+      padding: 18px 20px;
+      border-radius: 10px;
+      font-family: Consolas, 'Fira Code', Menlo, Monaco, monospace;
+      font-size: 0.86rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 14px 0 20px 0;
+      border: 1px solid #334155;
+      position: relative;
+    }
+    .code-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #94A3B8;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .interactive-demo {
+      background: #F8FAFC;
+      border: 2px dashed #CBD5E1;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 14px;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.85rem;
+    }
+    .spec-table th, .spec-table td {
+      border: 1px solid #E2E8F0;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    .spec-table th {
+      background: #F1F5F9;
+      color: #1E293B;
+      font-weight: 700;
+    }
+    .jump-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .jump-btn {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .jump-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #F0F9FF;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-bg"></div>
+  <div class="app-bg-overlay"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar glass-card">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+      </div>
+      <span>VoyageCraft</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="planner.html" class="nav-link">Plan Trip</a></li>
+      <li><a href="output.html" class="nav-link">Itinerary Output</a></li>
+      <li><a href="documentation.html" class="nav-link active">Pattern Docs</a></li>
+    </ul>
+  </nav>
+
+  <main class="doc-container">
+    <!-- Header -->
+    <div class="doc-hero glass-card">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+        <div>
+          <span class="hero-badge" style="margin-bottom: 8px;">Software Engineering Design Patterns</span>
+          <h1 style="font-size: 2rem; font-weight: 800; color: #0F172A; margin: 6px 0;">
+            Code Implementation & Verification Guide
+          </h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 750px;">
+            This page provides exact code excerpts, triggers, and live interactive UI outputs for all <strong>6 GoF Design Patterns</strong>. Use these side-by-side sections to capture pristine screenshots for project documentation and viva evaluations.
+          </p>
+        </div>
+        <button class="btn btn-secondary no-print" onclick="window.print()" style="align-self: flex-start;">
+          🖨️ Print / Save as PDF
+        </button>
+      </div>
+
+      <!-- Quick Jump Navigation -->
+      <div class="jump-nav">
+        <a href="#pattern-builder" class="jump-btn">1. Builder Pattern</a>
+        <a href="#pattern-factory" class="jump-btn">2. Factory Method</a>
+        <a href="#pattern-decorator" class="jump-btn">3. Decorator Pattern</a>
+        <a href="#pattern-facade" class="jump-btn">4. Facade Pattern</a>
+        <a href="#pattern-strategy" class="jump-btn">5. Strategy Pattern</a>
+        <a href="#pattern-observer" class="jump-btn">6. Observer Pattern</a>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 1. BUILDER PATTERN -->
+    <!-- ======================================================== -->
+    <section id="pattern-builder" class="pattern-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: #15803D; display: flex; align-items: center; gap: 10px;">
+          <span>🏗️ 1. Builder Design Pattern</span>
+        </h2>
+        <span class="badge-creational">Creational Pattern</span>
+      </div>
+      <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
+        <strong>Intent:</strong> Separates the construction of a complex, multi-day <code>Itinerary</code> object from its representation, allowing the same construction process to create varying schedules.
+      </p>
+
+      <!-- Code Box -->
+      <div class="code-title">
+        <span>Source: src/builder.js (TripDirector & CustomizedTripBuilder)</span>
+        <span>JavaScript</span>
+      </div>
+      <pre class="code-box"><code>// 1. DIRECTOR: TripDirector enforces the stepwise construction sequence
+export class TripDirector {
+  constructor(builder) {
+    this.builder = builder;
+  }
+
+  constructTrip(formData) {
+    this.builder.reset();
+    this.builder.setCoreParameters(
+      formData.destination,
+      formData.travelers,
+      formData.duration,
+      formData.budget
+    );
+    this.builder.buildTransportation(formData.transport);
+    this.builder.buildAccommodation(formData.accommodation);
+    this.builder.buildAttractionsAndPace(formData.attractions, formData.pace);
+    this.builder.buildDayWisePlan();
+    this.builder.calculateItemizedCosts();
+    return this.builder.getResult(); // Returns fully constructed Itinerary product
+  }
+}</code></pre>
+
+      <table class="spec-table">
+        <tr>
+          <th style="width: 25%;">Trigger / User Action</th>
+          <td>User selects destination, duration, transport, and hotel on <code>planner.html</code> and submits the form.</td>
+        </tr>
+        <tr>
+          <th>Input Parameters</th>
+          <td><code>{ destination: "Goa", duration: 4, travelers: 2, transport: "Flight", accommodation: "3-Star Hotel" }</code></td>
+        </tr>
+        <tr>
+          <th>Output Result</th>
+          <td>Structured <code>Itinerary</code> object with day-by-day schedules (morning, afternoon, evening), room counts, and verified itemized pricing.</td>
+        </tr>
+        <tr>
+          <th>Screenshot Target</th>
+          <td><strong>Planner Form</strong> on <code>planner.html</code> OR the <strong>Day-Wise Itinerary Schedule</strong> timeline on <code>output.html</code>.</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 2. FACTORY METHOD PATTERN -->
+    <!-- ======================================================== -->
+    <section id="pattern-factory" class="pattern-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: #15803D; display: flex; align-items: center; gap: 10px;">
+          <span>🏭 2. Factory Method Design Pattern</span>
+        </h2>
+        <span class="badge-creational">Creational Pattern</span>
+      </div>
+      <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
+        <strong>Intent:</strong> Defines creator interfaces for creating transport and accommodation service objects, letting subclasses decide which concrete service to instantiate based on user selection.
+      </p>
+
+      <div class="code-title">
+        <span>Source: src/factory.js (TransportationFactoryProvider & Concrete Services)</span>
+        <span>JavaScript</span>
+      </div>
+      <pre class="code-box"><code>// Creator Factory Provider for Transportation
+export class TransportationFactoryProvider {
+  static createTransportService(type) {
+    switch (type.toLowerCase()) {
+      case 'flight':
+        return new FlightService();
+      case 'train':
+        return new TrainService();
+      case 'bus':
+        return new BusService();
+      case 'car rental':
+      case 'car':
+        return new CarRentalService();
+      default:
+        return new FlightService();
+    }
+  }
+}
+
+// Concrete Product implementing calculateCost() and getIncludedPerks()
+export class FlightService extends ITransportationService {
+  calculateCost(travelers, destination) {
+    const baseAirfare = 5200;
+    return travelers * (baseAirfare + 800); // Base airfare + airport transfers
+  }
+  getIncludedPerks() {
+    return ["15kg Check-in Luggage", "Complimentary In-Flight Meal", "Fast-Track Security"];
+  }
+}</code></pre>
+
+      <table class="spec-table">
+        <tr>
+          <th style="width: 25%;">Trigger / User Action</th>
+          <td>User toggles between transit modes (Flight, Train, Bus, Car) or accommodation tiers (Budget, 3-Star, 5-Star, Resort).</td>
+        </tr>
+        <tr>
+          <th>Concrete Product Created</th>
+          <td><code>FlightService</code>, <code>ThreeStarHotelService</code>, etc., each encapsulating its own rate formulas and amenity rules.</td>
+        </tr>
+        <tr>
+          <th>Screenshot Target</th>
+          <td>The <strong>Transportation</strong> and <strong>Accommodation</strong> summary tiles and verified cost breakdown grid on <code>output.html</code>.</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 3. DECORATOR PATTERN -->
+    <!-- ======================================================== -->
+    <section id="pattern-decorator" class="pattern-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: #1E40AF; display: flex; align-items: center; gap: 10px;">
+          <span>🛡️ 3. Decorator Design Pattern</span>
+        </h2>
+        <span class="badge-structural">Structural Pattern</span>
+      </div>
+      <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
+        <strong>Intent:</strong> Dynamically attaches additional responsibilities (insurance, VIP concierge, carbon offset) to <code>BaseTripPackage</code> at runtime without subclass inheritance explosion.
+      </p>
+
+      <div class="code-title">
+        <span>Source: src/decorator.js (BaseTripPackage & Concrete Decorators)</span>
+        <span>JavaScript</span>
+      </div>
+      <pre class="code-box"><code>// 1. Concrete Component: BaseTripPackage
+export class BaseTripPackage extends TripPackageComponent {
+  constructor(itinerary) {
+    super();
+    this.baseCost = itinerary.costBreakdown.totalEstimatedCost;
+  }
+  getCost() { return this.baseCost; }
+  getDecoratedPerks() { return ["Standard Itinerary Coordination", "Confirmed Vouchers"]; }
+}
+
+// 2. Concrete Decorator: TravelInsuranceDecorator
+export class TravelInsuranceDecorator extends TripPackageDecorator {
+  constructor(tripPackage) {
+    super(tripPackage);
+    this.insuranceCost = 1200;
+  }
+  getCost() {
+    return this.wrappedPackage.getCost() + this.insuranceCost; // Dynamically layers price
+  }
+  getDecoratedPerks() {
+    return [...this.wrappedPackage.getDecoratedPerks(), "Emergency Medical Hospitalization up to ₹10 Lakhs"];
+  }
+}</code></pre>
+
+      <div class="interactive-demo">
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: #92400E; margin-bottom: 8px;">
+          Interactive Live Verification (Screenshot this section before and after clicking!):
+        </h4>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 12px;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+            <input type="checkbox" id="demo-insurance-cb" style="width: 18px; height: 18px;" />
+            Travel Insurance (+₹1,200)
+          </label>
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+            <input type="checkbox" id="demo-vip-cb" style="width: 18px; height: 18px;" />
+            24/7 VIP Concierge (+₹2,500)
+          </label>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 0.78rem; color: #64748B;">Decorated Package Total:</div>
+            <div id="demo-pkg-cost" style="font-size: 1.3rem; font-weight: 800; color: #1E40AF;">₹32,000</div>
+          </div>
+          <div id="demo-pkg-perks" style="font-size: 0.8rem; color: #15803D; font-weight: 600;">
+            ✓ Standard Itinerary Coordination
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 4. FACADE PATTERN -->
+    <!-- ======================================================== -->
+    <section id="pattern-facade" class="pattern-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: #1E40AF; display: flex; align-items: center; gap: 10px;">
+          <span>🏛️ 4. Facade Design Pattern</span>
+        </h2>
+        <span class="badge-structural">Structural Pattern</span>
+      </div>
+      <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
+        <strong>Intent:</strong> Provides a unified, simplified master API (<code>planAndBookCompleteTrip()</code>) that shields clients from the complexity of coordinating Builder, Factory Method, Decorator, Strategy, and Services.
+      </p>
+
+      <div class="code-title">
+        <span>Source: src/facade.js (SmartTripPlannerFacade)</span>
+        <span>JavaScript</span>
+      </div>
+      <pre class="code-box"><code>export class SmartTripPlannerFacade {
+  constructor() {
+    this.builder = new CustomizedTripBuilder();
+    this.director = new TripDirector(this.builder);
+    this.weatherService = new WeatherService();
+    this.currencyService = new CurrencyService();
+    this.bookingService = new BookingService();
+    this.strategyContext = new PacingStrategyContext("Moderate");
+  }
+
+  planAndBookCompleteTrip(formData) {
+    // 1. Delegate construction to Builder & Factory Method Subsystem
+    const itinerary = this.director.constructTrip(formData);
+
+    // 2. Delegate add-on layering to Decorator Subsystem
+    const decoratedPackage = TripDecoratorManager.applyDecorators(itinerary, formData.addons);
+
+    // 3. Delegate climate telemetry and currency conversion to Services
+    const weather = this.weatherService.getWeatherReport(formData.destination);
+    const currency = this.currencyService.convertAndFormat(decoratedPackage.getCost(), formData.targetCurrency);
+
+    // 4. Delegate daily pacing timeline to Strategy Subsystem
+    this.strategyContext.setStrategy(formData.pace || "Moderate");
+    this.strategyContext.regeneratePlan(itinerary);
+
+    // 5. Assemble unified Master Plan object
+    return { itinerary, packageSummary: decoratedPackage.getPackageSummary(), weather, currency };
+  }
+}</code></pre>
+
+      <table class="spec-table">
+        <tr>
+          <th style="width: 25%;">Client Call in UI</th>
+          <td><code>const masterPlan = new SmartTripPlannerFacade().planAndBookCompleteTrip(formData);</code></td>
+        </tr>
+        <tr>
+          <th>Subsystems Coordinated</th>
+          <td>Builder + Factory Method (construction), Decorator (add-ons), Strategy (pacing), Weather & Currency Services.</td>
+        </tr>
+        <tr>
+          <th>Screenshot Target</th>
+          <td>The smooth transition and loading overlay on <code>planner.html</code> to the fully populated <code>output.html</code> view.</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 5. STRATEGY PATTERN -->
+    <!-- ======================================================== -->
+    <section id="pattern-strategy" class="pattern-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: #B45309; display: flex; align-items: center; gap: 10px;">
+          <span>🧭 5. Strategy Design Pattern</span>
+        </h2>
+        <span class="badge-behavioral">Behavioral Pattern</span>
+      </div>
+      <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
+        <strong>Intent:</strong> Defines a family of interchangeable travel pacing algorithms (Relaxed, Balanced, Fast-Paced), encapsulating each one and making them swappable at runtime.
+      </p>
+
+      <div class="code-title">
+        <span>Source: src/strategy.js (ItineraryStrategy & PacingStrategyContext)</span>
+        <span>JavaScript</span>
+      </div>
+      <pre class="code-box"><code>// Context maintaining reference to the active Strategy
+export class PacingStrategyContext {
+  constructor(initialPaceKey = "Moderate") {
+    this.strategies = {
+      "Relaxed": new RelaxedLeisureStrategy(),     // 3-5 km/day, 4 hrs rest
+      "Moderate": new BalancedExplorerStrategy(),   // 6-9 km/day, 2-3 hrs rest
+      "Fast": new FastPacedAdventureStrategy()      // 10-14 km/day, 1 hr rest
+    };
+    this.currentStrategy = this.strategies[initialPaceKey] || this.strategies["Moderate"];
+  }
+
+  setStrategy(paceKey) {
+    if (this.strategies[paceKey]) {
+      this.currentStrategy = this.strategies[paceKey]; // Swaps algorithm at runtime
+    }
+  }
+
+  regeneratePlan(itinerary) {
+    // Executes active strategy algorithm to recalculate morning, afternoon, evening slots
+    itinerary.dayWisePlan.forEach(day => {
+      const schedule = this.currentStrategy.generateDaySchedule({ dayNumber: day.day, ... });
+      Object.assign(day, schedule);
+    });
+  }
+}</code></pre>
+
+      <div class="interactive-demo">
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 8px;">
+          Interactive Live Verification (Screenshot before and after switching pace!):
+        </h4>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+          <button type="button" class="btn btn-secondary" onclick="demoSwitchPace('Relaxed', 'Gentle (Low Pace)', '3-5 km/day', '4 hrs rest')">🧘 Relaxed & Leisure</button>
+          <button type="button" class="btn btn-secondary" onclick="demoSwitchPace('Moderate', 'Balanced Explorer', '6-9 km/day', '2-3 hrs rest')">⚖️ Balanced Explorer</button>
+          <button type="button" class="btn btn-secondary" onclick="demoSwitchPace('Fast', 'Active Adventure', '10-14 km/day', '1 hr rest')">⚡ Fast-Paced Adventure</button>
+        </div>
+        <div id="demo-pace-output" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 8px; padding: 12px 16px;">
+          <div style="font-weight: 700; color: #1E40AF; font-size: 0.95rem;" id="demo-pace-title">Active Strategy: Balanced Explorer</div>
+          <div style="font-size: 0.82rem; color: #475569; margin-top: 4px;" id="demo-pace-desc">Target: 6-9 km/day • Scheduled Downtime: 2-3 hrs rest • Balanced sightseeing density.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- 6. OBSERVER PATTERN -->
+    <!-- ======================================================== -->
+    <section id="pattern-observer" class="pattern-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <h2 style="font-size: 1.45rem; font-weight: 800; color: #B45309; display: flex; align-items: center; gap: 10px;">
+          <span>🔔 6. Observer Design Pattern</span>
+        </h2>
+        <span class="badge-behavioral">Behavioral Pattern</span>
+      </div>
+      <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
+        <strong>Intent:</strong> Defines a one-to-many publish-subscribe dependency so that when the trip state changes (cost, currency, pace, activities), all dependent UI components update automatically.
+      </p>
+
+      <div class="code-title">
+        <span>Source: src/observer.js (TripEventSubject & Concrete Observers)</span>
+        <span>JavaScript</span>
+      </div>
+      <pre class="code-box"><code>// 1. Subject / Observable maintaining registered observers
+export class TripEventSubject {
+  constructor() {
+    this.observers = new Map(); // eventName -> Set of observers
+  }
+  subscribe(eventName, observer) {
+    if (!this.observers.has(eventName)) this.observers.set(eventName, new Set());
+    this.observers.get(eventName).add(observer);
+  }
+  notify(eventName, eventData, context) {
+    if (this.observers.has(eventName)) {
+      this.observers.get(eventName).forEach(obs => obs.update(eventName, eventData, context));
+    }
+  }
+}
+
+// 2. Concrete Observer: BudgetHealthObserver
+export class BudgetHealthObserver extends IObserver {
+  update(eventName, eventData, context) {
+    const total = context.packageSummary.totalCost;
+    const target = context.itinerary.budget;
+    const pct = Math.round((total / target) * 100);
+    // Dynamically updates progress bar and color (Green: <=100%, Amber: >100%)
+    this.renderBudgetHealthGauge(total, target, pct);
+  }
+}</code></pre>
+
+      <div class="interactive-demo">
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: #0F172A; margin-bottom: 8px;">
+          Interactive Live Verification (Screenshot toast & gauge reacting!):
+        </h4>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px;">
+          <button type="button" class="btn btn-primary" onclick="demoNotifyObserver('ADDON_TOGGLED', 'Added VIP Concierge (+₹2,500)')">Trigger ADDON_TOGGLED</button>
+          <button type="button" class="btn btn-secondary" onclick="demoNotifyObserver('CURRENCY_CHANGED', 'Converted to EUR (€)')">Trigger CURRENCY_CHANGED</button>
+          <button type="button" class="btn btn-secondary" onclick="demoNotifyObserver('ACTIVITY_MODIFIED', 'Added Sunset Boat Cruise to Day 2')">Trigger ACTIVITY_MODIFIED</button>
+        </div>
+        <div id="demo-observer-log" style="background: #0F172A; color: #38BDF8; font-family: monospace; font-size: 0.8rem; padding: 10px 14px; border-radius: 6px; min-height: 42px;">
+          [Subject Idle] Click any button above to broadcast an event to registered observers...
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-title">VoyageCraft Tour & Holiday Planning</div>
+      <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">© 2026 VoyageCraft. Software Engineering Architecture Documentation.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Live demo logic for Decorator pattern
+    const insCb = document.getElementById('demo-insurance-cb');
+    const vipCb = document.getElementById('demo-vip-cb');
+    const costEl = document.getElementById('demo-pkg-cost');
+    const perksEl = document.getElementById('demo-pkg-perks');
+
+    function updateDecoratorDemo() {
+      let cost = 32000;
+      let perks = ["✓ Standard Itinerary Coordination"];
+      if (insCb && insCb.checked) {
+        cost += 1200;
+        perks.push("✓ Medical Coverage up to ₹10L");
+      }
+      if (vipCb && vipCb.checked) {
+        cost += 2500;
+        perks.push("✓ 24/7 Priority WhatsApp Concierge");
+      }
+      if (costEl) costEl.textContent = `₹${cost.toLocaleString('en-IN')}`;
+      if (perksEl) perksEl.innerHTML = perks.join('<br>');
+    }
+    if (insCb) insCb.addEventListener('change', updateDecoratorDemo);
+    if (vipCb) vipCb.addEventListener('change', updateDecoratorDemo);
+
+    // Live demo logic for Strategy pattern
+    function demoSwitchPace(key, badge, walking, rest) {
+      const title = document.getElementById('demo-pace-title');
+      const desc = document.getElementById('demo-pace-desc');
+      if (title) title.textContent = `Active Strategy: ${key} (${badge})`;
+      if (desc) desc.textContent = `Target: ${walking} • Scheduled Downtime: ${rest} • Algorithm recalculated day schedule slots.`;
+    }
+
+    // Live demo logic for Observer pattern
+    function demoNotifyObserver(evt, msg) {
+      const log = document.getElementById('demo-observer-log');
+      const time = new Date().toLocaleTimeString();
+      if (log) {
+        log.innerHTML = `[${time}] Subject.notify("${evt}") &rarr; Observers notified! Payload: "${msg}"`;
+      }
+    }
+  </script>
+</body>
+</html>

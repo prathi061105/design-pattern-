@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan Your Holiday - VoyageCraft</title>
+  <meta name="description" content="Configure your travel preferences and build an itemized day-by-day holiday itinerary with VoyageCraft." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <!-- App Background -->
+  <div class="app-bg"></div>
+  <div class="app-bg-overlay"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar glass-card">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+      </div>
+      <span>VoyageCraft</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="planner.html" class="nav-link active">Plan Trip</a></li>
+      <li><a href="documentation.html" class="nav-link">Pattern Docs</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Trip Planner Form -->
+  <main>
+    <section class="glass-card form-container">
+      <div class="form-header">
+        <h2>Custom Trip Configuration</h2>
+        <p style="color: var(--text-muted); font-size: 1rem;">Configure your travel preferences below to build an itemized day-by-day itinerary.</p>
+      </div>
+
+      <form id="trip-planner-form" class="form-grid">
+        <!-- 1. Destination Dropdown & Contextual Preview Card -->
+        <div class="form-group" style="grid-column: 1 / -1;">
+          <label for="destination" class="form-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Select Destination
+          </label>
+          <select id="destination" name="destination" class="form-select" required>
+            <option value="Goa" selected>Goa (Vibrant Beaches & Nightlife)</option>
+            <option value="Kerala">Kerala (Serene Backwaters & Lush Greenery)</option>
+            <option value="Ooty">Ooty (Misty Hills & Tea Gardens)</option>
+            <option value="Manali">Manali (Snow Mountains & Adventure)</option>
+            <option value="Mysore">Mysore (Royal Palaces & Heritage)</option>
+            <option value="Jaipur">Jaipur (Pink City & Forts)</option>
+            <option value="Shimla">Shimla (Pine Forests & Colonial Charm)</option>
+            <option value="Darjeeling">Darjeeling (Muscatel Tea & Kanchenjunga Views)</option>
+            <option value="Rishikesh">Rishikesh (Yoga Capital & Ganges Rafting)</option>
+            <option value="Pondicherry">Pondicherry (French Quarter & Quiet Beaches)</option>
+            <option value="Hampi">Hampi (UNESCO Boulders & Ancient Ruins)</option>
+          </select>
+
+          <!-- Dynamic Contextual Destination Preview Card -->
+          <div id="destination-info-card" class="dest-preview-card glass-card" style="margin-top: 14px;">
+            <div class="dest-preview-img-box">
+              <img id="dest-preview-img" src="/src/assets/images/goa_beach_1785941223820.jpg" alt="Destination Preview" class="dest-preview-img" referrerpolicy="no-referrer" />
+            </div>
+            <div class="dest-preview-body">
+              <div class="dest-preview-tags">
+                <span id="dest-preview-tagline" class="dest-tag">Pearl of the Orient & Beach Capital</span>
+                <span id="dest-preview-state" class="dest-state-badge">Goa</span>
+              </div>
+              <h3 id="dest-preview-title" class="dest-preview-title">Goa</h3>
+              <p id="dest-preview-desc" class="dest-preview-desc">Famous for sun-kissed beaches, vibrant nightlife, Portuguese heritage, and seafood delicacies.</p>
+              <div class="dest-preview-meta">
+                <span class="dest-cost-est">Est. Daily Base: <strong id="dest-preview-cost">₹3,500/day</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Mode of Transportation Radio Buttons -->
+        <div class="form-group">
+          <label class="form-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+            Mode of Transportation
+          </label>
+          <div class="radio-grid">
+            <label class="radio-card">
+              <input type="radio" name="transport" value="Flight" checked />
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+              <span>Flight</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="transport" value="Train" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="3" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>
+              <span>Train</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="transport" value="Bus" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6"/><path d="M16 6v6"/><path d="M2 12h20"/><path d="M18 18h2a1 1 0 0 0 1-1V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+              <span>Bus</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="transport" value="Car" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+              <span>Car</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 3. Accommodation Dropdown -->
+        <div class="form-group">
+          <label for="accommodation" class="form-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22v-6.57a2 2 0 0 1 1.18-1.83l3.08-1.37a2 2 0 0 1 1.62 0l3.08 1.37a2 2 0 0 1 1.18 1.83V22"/><path d="M18 12V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18"/><path d="M2 22h20"/></svg>
+            Accommodation Preference
+          </label>
+          <select id="accommodation" name="accommodation" class="form-select" required>
+            <option value="Budget Hotel">Budget Hotel (Comfortable & Economical)</option>
+            <option value="3-Star Hotel" selected>3-Star Hotel (Standard Comfort & Amenities)</option>
+            <option value="5-Star Hotel">5-Star Hotel (Luxury & Fine Dining)</option>
+            <option value="Resort">Resort (Spacious, Pool & Spa)</option>
+          </select>
+        </div>
+
+        <!-- 4. Number of Travelers Selection -->
+        <div class="form-group">
+          <label for="travelers" class="form-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Number of Travelers / Members
+          </label>
+          <select id="travelers" name="travelers" class="form-select" required>
+            <option value="1">1 Person (Solo Traveler)</option>
+            <option value="2" selected>2 Persons (Duo / Couple)</option>
+            <option value="3">3 Persons (Small Group / Family)</option>
+            <option value="4">4 Persons (Group of 4)</option>
+            <option value="5">5 Persons (Group of 5)</option>
+            <option value="6">6 Persons (Group of 6)</option>
+            <option value="7">7 Persons</option>
+            <option value="8">8 Persons</option>
+            <option value="9">9 Persons</option>
+            <option value="10">10+ Persons</option>
+          </select>
+        </div>
+
+        <!-- 4. Tourist Attractions Checkboxes -->
+        <div class="form-group">
+          <label class="form-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.28 1.28L3 12l5.8 1.9a2 2 0 0 1 1.28 1.28L12 21l1.9-5.8a2 2 0 0 1 1.28-1.28L21 12l-5.8-1.9a2 2 0 0 1-1.28-1.28Z"/></svg>
+            Select Preferred Attractions & Activities
+          </label>
+          <div class="checkbox-grid">
+            <label class="checkbox-card">
+              <input type="checkbox" name="attractions" value="Beach" checked />
+              <span>🏖️ Beach</span>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="attractions" value="Mountains" />
+              <span>⛰️ Mountains</span>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="attractions" value="Museums" />
+              <span>🏛️ Museums</span>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="attractions" value="Parks" />
+              <span>🌳 Parks</span>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="attractions" value="Adventure Sports" checked />
+              <span>🏄 Adventure Sports</span>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="attractions" value="Shopping" />
+              <span>🛍️ Shopping</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 5. Travel Budget Range Slider -->
+        <div class="form-group range-container">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label for="budget" class="form-label">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Travel Budget Limit
+            </label>
+            <span id="budget-value" class="range-val-badge">₹25,000</span>
+          </div>
+          <input type="range" id="budget" name="budget" min="5000" max="100000" step="2500" value="25000" class="range-slider" />
+          <div class="range-labels">
+            <span>₹5,000</span>
+            <span>₹50,000</span>
+            <span>₹1,00,000</span>
+          </div>
+        </div>
+
+        <!-- 6. Travel Duration Dropdown -->
+        <div class="form-group">
+          <label for="duration" class="form-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            Travel Duration (Days)
+          </label>
+          <select id="duration" name="duration" class="form-select" required>
+            <option value="1">1 Day (Express Tour)</option>
+            <option value="2">2 Days (Weekend Getaway)</option>
+            <option value="3">3 Days (Short Vacation)</option>
+            <option value="4" selected>4 Days (Standard Trip)</option>
+            <option value="5">5 Days (Extended Vacation)</option>
+            <option value="6">6 Days (Full Week Exploration)</option>
+            <option value="7">7 Days (Weekly Retreat)</option>
+            <option value="8">8 Days (Grand Sightseeing)</option>
+            <option value="9">9 Days (In-Depth Tour)</option>
+            <option value="10">10 Days (Ultimate Experience)</option>
+          </select>
+        </div>
+
+        <!-- 7. Itinerary Pace Section -->
+        <div class="form-group" style="grid-column: 1 / -1; margin-top: 10px;">
+          <label class="form-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Itinerary Pace
+          </label>
+          <div class="pace-grid">
+            <label class="pace-card">
+              <input type="radio" name="pace" value="Relaxed" />
+              <div class="pace-card-inner">
+                <div class="pace-header">
+                  <span class="pace-emoji">🌿</span>
+                  <span class="pace-title">Relaxed</span>
+                </div>
+                <p class="pace-desc">Fewer activities per day with ample downtime, leisure & unhurried dining</p>
+              </div>
+            </label>
+            <label class="pace-card">
+              <input type="radio" name="pace" value="Moderate" checked />
+              <div class="pace-card-inner">
+                <div class="pace-header">
+                  <span class="pace-emoji">⚖️</span>
+                  <span class="pace-title">Moderate</span>
+                </div>
+                <p class="pace-desc">Balanced schedule with 2 key activities per day and evening relaxation</p>
+              </div>
+            </label>
+            <label class="pace-card">
+              <input type="radio" name="pace" value="Packed" />
+              <div class="pace-card-inner">
+                <div class="pace-header">
+                  <span class="pace-emoji">⚡</span>
+                  <span class="pace-title">Packed</span>
+                </div>
+                <p class="pace-desc">Action-packed energetic tour with 3+ activities per day for max sightseeing</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 8. Package Enhancements & Add-ons -->
+        <div class="form-group" style="grid-column: 1 / -1; margin-top: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <label class="form-label" style="margin-bottom: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Trip Protection & VIP Add-ons
+            </label>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin: 6px 0 12px 0;">
+            Select optional protection and convenience packages to enhance your travel experience.
+          </p>
+          <div class="checkbox-grid">
+            <label class="checkbox-card" style="padding: 12px;">
+              <input type="checkbox" name="addons" value="travel_insurance" checked />
+              <div>
+                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9rem;">🛡️ Comprehensive Travel Insurance</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">+₹799/person: Cashless medical cover & lost luggage protection</div>
+              </div>
+            </label>
+            <label class="checkbox-card" style="padding: 12px;">
+              <input type="checkbox" name="addons" value="carbon_offset" checked />
+              <div>
+                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9rem;">🌿 Eco Carbon-Neutral Offset</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">+₹199/person: Certified green credits supporting Indian solar reforestation</div>
+              </div>
+            </label>
+            <label class="checkbox-card" style="padding: 12px;">
+              <input type="checkbox" name="addons" value="vip_concierge" />
+              <div>
+                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9rem;">👑 VIP Concierge Butler</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">+₹1,499 flat: 24/7 personal WhatsApp butler & skip-the-line passes</div>
+              </div>
+            </label>
+            <label class="checkbox-card" style="padding: 12px;">
+              <input type="checkbox" name="addons" value="flex_cancel" />
+              <div>
+                <div style="font-weight: 700; color: var(--text-dark); font-size: 0.9rem;">🔄 100% Flexi-Refund Guarantee</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">+₹499 flat: Cancel up to 2 hours prior with zero cancellation fee</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 9. Currency Display Preference -->
+        <div class="form-group" style="grid-column: 1 / -1; margin-top: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <label for="currency" class="form-label" style="margin-bottom: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+              Preferred Quotation Currency
+            </label>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin: 6px 0 10px 0;">
+            Select your preferred currency to calculate and view estimated trip quotes.
+          </p>
+          <select id="currency" name="currency" class="form-select">
+            <option value="INR" selected>INR (₹ - Indian Rupee)</option>
+            <option value="USD">USD ($ - US Dollar)</option>
+            <option value="EUR">EUR (€ - Euro)</option>
+            <option value="GBP">GBP (£ - British Pound)</option>
+            <option value="AED">AED (AED - UAE Dirham)</option>
+          </select>
+        </div>
+
+        <!-- Form Action Buttons -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" style="flex: 2;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/></svg>
+            Create Itinerary
+          </button>
+          <button type="button" id="reset-btn" class="btn btn-secondary" style="flex: 1;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Reset
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Loading Animation Radar Overlay -->
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="loading-spinner-box"></div>
+    <div class="loading-text">Finalizing Your Travel Itinerary...</div>
+    <div class="loading-subtext">Checking route logistics & accommodation availability...</div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-title">VoyageCraft Tour & Holiday Planning</div>
+      <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">© 2026 VoyageCraft. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>

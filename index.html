@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoyageCraft | Custom Holiday & Tour Planning</title>
+  <meta name="description" content="Build your custom holiday itinerary with curated transit options, verified hotels, and transparent day-by-day travel schedules." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <!-- App Background with Travel Hero Asset -->
+  <div class="app-bg"></div>
+  <div class="app-bg-overlay"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar glass-card">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+      </div>
+      <span>VoyageCraft</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="planner.html" class="nav-link">Plan Trip</a></li>
+      <li><a href="documentation.html" class="nav-link">Pattern Docs</a></li>
+      <li><a href="planner.html" class="nav-link nav-cta">Get Started</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Hero Section -->
+  <main>
+    <section class="hero-section glass-card">
+      <div class="hero-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+        Bespoke Holiday Planning
+      </div>
+      <h1 class="hero-title">
+        Plan Your <span>Holiday</span> With Confidence
+      </h1>
+      <p class="hero-subtitle">
+        Design your tailor-made holiday. Select your preferred transit, hotel tier, budget limit, and curated activities to receive an itemized, day-by-day travel schedule.
+      </p>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+        <a href="planner.html" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.2c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+          Get Started
+        </a>
+        <a href="#destinations-section" class="btn btn-secondary">
+          Explore Destinations
+        </a>
+      </div>
+    </section>
+
+    <!-- Top Destination Showcase Grid -->
+    <section id="destinations-section" style="margin-bottom: 60px;">
+      <h2 class="section-title">Popular Indian Destinations</h2>
+      <p class="section-desc">Select a destination to instantly begin customizing your travel itinerary</p>
+
+      <div class="destination-grid">
+        <!-- Goa -->
+        <div class="dest-card glass-card" data-dest="Goa">
+          <img src="/src/assets/images/goa_beach_1785941223820.jpg" alt="Goa Beach" class="dest-card-img" />
+          <div class="dest-card-body">
+            <span class="dest-tag">Beach & Nightlife</span>
+            <h3 class="dest-name">Goa</h3>
+            <p class="dest-desc">Sun-kissed golden beaches, vibrant beach shacks, Portuguese heritage churches, and exciting water sports.</p>
+            <div class="dest-action">
+              <span>Plan Trip to Goa</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kerala -->
+        <div class="dest-card glass-card" data-dest="Kerala">
+          <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80" alt="Kerala Backwaters" class="dest-card-img" />
+          <div class="dest-card-body">
+            <span class="dest-tag">God's Own Country</span>
+            <h3 class="dest-name">Kerala</h3>
+            <p class="dest-desc">Tranquil backwater houseboats, lush tea gardens in Munnar, coconut groves, and Ayurvedic wellness.</p>
+            <div class="dest-action">
+              <span>Plan Trip to Kerala</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ooty -->
+        <div class="dest-card glass-card" data-dest="Ooty">
+          <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1200&q=80" alt="Ooty Hills" class="dest-card-img" />
+          <div class="dest-card-body">
+            <span class="dest-tag">Queen of Hill Stations</span>
+            <h3 class="dest-name">Ooty</h3>
+            <p class="dest-desc">Misty Nilgiri mountains, botanical gardens, homemade chocolates, and heritage toy train rides.</p>
+            <div class="dest-action">
+              <span>Plan Trip to Ooty</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manali -->
+        <div class="dest-card glass-card" data-dest="Manali">
+          <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80" alt="Manali Snow Mountains" class="dest-card-img" />
+          <div class="dest-card-body">
+            <span class="dest-tag">Himalayan Adventure</span>
+            <h3 class="dest-name">Manali</h3>
+            <p class="dest-desc">Snow-clad mountain peaks, paragliding in Solang Valley, Solang snow points, and Beas river rafting.</p>
+            <div class="dest-action">
+              <span>Plan Trip to Manali</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mysore -->
+        <div class="dest-card glass-card" data-dest="Mysore">
+          <img src="/src/assets/images/mysore_palace_card_1785943091013.jpg" alt="Mysore Palace" class="dest-card-img" referrerpolicy="no-referrer" />
+          <div class="dest-card-body">
+            <span class="dest-tag">Royal Heritage</span>
+            <h3 class="dest-name">Mysore</h3>
+            <p class="dest-desc">Illuminated Mysore Palace, Chamundi Hill temple, Brindavan Gardens musical fountains, and silk shopping.</p>
+            <div class="dest-action">
+              <span>Plan Trip to Mysore</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jaipur -->
+        <div class="dest-card glass-card" data-dest="Jaipur">
+          <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1200&q=80" alt="Jaipur Palace" class="dest-card-img" />
+          <div class="dest-card-body">
+            <span class="dest-tag">Pink City Forts</span>
+            <h3 class="dest-name">Jaipur</h3>
+            <p class="dest-desc">Majestic Hawa Mahal, Amer Fort elephant rides, royal palaces, gemstone bazaars, and Rajasthani cuisine.</p>
+            <div class="dest-action">
+              <span>Plan Trip to Jaipur</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-title">VoyageCraft Tour & Holiday Planning</div>
+      <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">© 2026 VoyageCraft. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>

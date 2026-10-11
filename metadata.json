@@ -1,0 +1,6 @@
+{
+  "name": "Smart Trip Planning System",
+  "description": "A bespoke holiday itinerary planning portal with custom multi-destination scheduling, travel protection add-ons, and multi-currency budgeting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
